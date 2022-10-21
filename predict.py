@@ -127,11 +127,10 @@ def main():
             img = transform(img).unsqueeze(0) # To tensor of NCHW
             img = img.to(device)
             
-            pred = model(img).max(1)[1].cpu().numpy()[0] # HW
-            colorized_preds = decode_fn(pred).astype('uint8')
-            colorized_preds = Image.fromarray(colorized_preds)
+            pred = model(img).max(1)[1].cpu().numpy()[0].astype("uint8") # HW
+            pred_img = Image.fromarray(pred)
             if opts.save_val_results_to:
-                colorized_preds.save(os.path.join(opts.save_val_results_to, img_name+'.png'))
+                colorized_preds.save(os.path.join(opts.save_val_results_to, img_name[:-2]+'mask.png'))
 
 if __name__ == '__main__':
     main()
