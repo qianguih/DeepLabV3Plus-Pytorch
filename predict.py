@@ -130,7 +130,7 @@ def main():
             pred = model(img).max(1)[1].cpu().numpy()[0].astype("uint8") # HW
             pred_img = Image.fromarray(pred)
             if opts.save_val_results_to:
-                pred_img.save(os.path.join(opts.save_val_results_to, img_name[:-2]+'mask.png'))
+                pred_img.save(os.path.join(opts.save_val_results_to, img_name+'mask.png'))
 
 if __name__ == '__main__':
     main()
